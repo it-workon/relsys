@@ -51,11 +51,11 @@ def fill_template(template_path, output_path, data):
 
 
 data = {
-    "{{USER_NAME}}": "fabia.martins",
+    "{{USER_NAME}}": "beatriz.aurea",
 
     "{{DOMAIN_ORG}}": "workongroup.com.br",
 
-    "{{USER_PASSWD}}": "FaM@work2025",
+    "{{USER_PASSWD}}": "BeA@work2025",
 
     "{{EMAIL_PASSWD}}": "Mudar@2025",
 
@@ -63,18 +63,18 @@ data = {
 
     "{{TEAMS_PASSWD}}": "Mudar@2025",
 
-    "{{VBD_PASSWD}}": "FaM@work2025",
+    "{{VBD_PASSWD}}": "BeA@work2025",
 
     "{{FORTICLIENT_PASSWD}}": "workon2025",
 
-    "{{PROCESS_NUMBER}}": "12345",
+    "{{PROCESS_NUMBER}}": "389647",
 
-    "{{ASSET}}": "EMC-126841",
+    "{{ASSET}}": "EMC-118450",
 }
 
 fill_template(
     r"C:\Users\eduardo.andrade\Documents\Automator\relsys\environment\welcome-model.docx",
-    r"C:\Users\eduardo.andrade\Documents\fabia-martins.docx",
+    r"C:\Users\eduardo.andrade\Documents\beatriz-aurea.docx",
     data
 )
 
