@@ -1,5 +1,6 @@
 from docx import Document
 from pathlib import Path
+from config import data
 
 def replace_all_in_paragraph(par):
     full = ''.join(r.text for r in par.runs)
@@ -50,31 +51,10 @@ def fill_template(template_path, output_path, data):
     doc.save(str(op))
 
 
-data = {
-    "{{USER_NAME}}": "beatriz.aurea",
-
-    "{{DOMAIN_ORG}}": "workongroup.com.br",
-
-    "{{USER_PASSWD}}": "BeA@work2025",
-
-    "{{EMAIL_PASSWD}}": "Mudar@2025",
-
-    "{{GI_PASSWD}}": "1234",
-
-    "{{TEAMS_PASSWD}}": "Mudar@2025",
-
-    "{{VBD_PASSWD}}": "BeA@work2025",
-
-    "{{FORTICLIENT_PASSWD}}": "workon2025",
-
-    "{{PROCESS_NUMBER}}": "389647",
-
-    "{{ASSET}}": "EMC-118450",
-}
 
 fill_template(
-    r"C:\Users\eduardo.andrade\Documents\Automator\relsys\environment\welcome-model.docx",
-    r"C:\Users\eduardo.andrade\Documents\beatriz-aurea.docx",
+    r"C:\Users\eduardo.andrade\Documents\Automator\relsys\templates\welcome-model.docx",
+    r"C:\Users\eduardo.andrade\Documents\Automator\relsys\output\beatriz-aurea.docx",
     data
 )
 
