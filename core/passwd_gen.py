@@ -12,16 +12,5 @@ def generate_password(user_name) -> str:
     first = parts[0][0].upper()
     first += parts[0][1]
     second = parts[1][0].capitalize()
+    
     return f"{first}{second}@work2025"
-''' Try Except 
-try:
-    user_name = input("Digite o nome (formato nome.sobrenome): ").strip()
-    password = generate_password(user_name)
-    print(f"Senha gerada: {password}")
-    
-except ValueError as err:
-    print(f"Erro: {err}")
-    
-except Exception as err:
-    print(f"Erro inesperado: {err}")
-'''
