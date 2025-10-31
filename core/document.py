@@ -1,6 +1,7 @@
 from docx import Document
 from pathlib import Path
-from config import data
+from config import data, TEMPLATE_PATH, SAVE_DIRECTORY
+from utils import format_filename
 
 def replace_all_in_paragraph(par):
     full = ''.join(r.text for r in par.runs)
@@ -17,7 +18,7 @@ def set_paragraph_text(par, text):
     else:
         par.add_run(text)
 
-def replace_text(doc, data):
+def replace_text(doc, data: dict) -> str:
 
     for par in doc.paragraphs:
         orig = replace_all_in_paragraph(par)
@@ -40,6 +41,7 @@ def replace_text(doc, data):
                     if new != orig:
                         set_paragraph_text(par, new)
 
+
 def fill_template(template_path, output_path, data):
     tp = Path(template_path)
     op = Path(output_path)
@@ -50,12 +52,17 @@ def fill_template(template_path, output_path, data):
     replace_text(doc, data)
     doc.save(str(op))
 
+def generate_document(user_name: str, passwd: str, process_num: str) -> str:
 
+    data["{NAME}"] = user_name
+    data["{PASSWD}"] = passwd
+    data["{PROCESS}"] = process_num
 
-fill_template(
-    r"C:\Users\eduardo.andrade\Documents\Automator\relsys\templates\welcome-model.docx",
-    r"C:\Users\eduardo.andrade\Documents\Automator\relsys\output\beatriz-aurea.docx",
-    data
-)
+    output_file = SAVE_DIRECTORY / f"{format_filename(user_name)}.docx"
+
+    fill_template(TEMPLATE_PATH, output_file, data)
+    print("Documento gerado!")
+    return str(output_file)
+
 
 

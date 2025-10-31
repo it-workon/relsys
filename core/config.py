@@ -1,21 +1,17 @@
+from pathlib import Path
+
+SAVE_DIRECTORY = Path("output")
+TEMPLATE_PATH = Path("templates/welcome-model.docx")
+
 data = {
-    "{{USER_NAME}}": "beatriz.aurea",
-
+    "{{USER_NAME}}": "{NAME}",
     "{{DOMAIN_ORG}}": "workongroup.com.br",
-
-    "{{USER_PASSWD}}": "BeA@work2025",
-
-    "{{EMAIL_PASSWD}}": "Mudar@2025",
-
+    "{{USER_PASSWD}}": "{PASSWD}",
+    "{{EMAIL_PASSWD}}": "{PASSWD}",
     "{{GI_PASSWD}}": "1234",
-
-    "{{TEAMS_PASSWD}}": "Mudar@2025",
-
-    "{{VBD_PASSWD}}": "BeA@work2025",
-
+    "{{TEAMS_PASSWD}}": "{PASSWD}",
+    "{{VBD_PASSWD}}": "{PASSWD}",
     "{{FORTICLIENT_PASSWD}}": "workon2025",
-
-    "{{PROCESS_NUMBER}}": "389647",
-
+    "{{PROCESS_NUMBER}}": "{PROCESS}",
     "{{ASSET}}": "EMC-118450",
 }
