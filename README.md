@@ -70,7 +70,7 @@ DEFAULT_PASSWORD_EMAIL=Mudar@2025
 TEMPLATE_PATH=templates/welcome-model.docx
 OUTPUT_DIR=output
 ```
-Execução
+## Execução
 
 Para iniciar o sistema:
 ```
