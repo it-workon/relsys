@@ -25,7 +25,7 @@ class App(tk.Tk):
             "TNotebook.Tab",
             background="#2E2E2E",
             padding=[18, 10],
-            font=("Georgia", 10, "bold"),
+            font=("Times New Roman", 10, "bold"),
             foreground=self.subtext_color
         )
         style.map(
@@ -38,12 +38,12 @@ class App(tk.Tk):
         style.configure(
             "TLabel",
             background=self.bg_card,
-            font=("Georgia", 10),
+            font=("Times New Roman", 10),
             foreground=self.text_color
         )
         style.configure(
             "TButton",
-            font=("Georgia", 10, "bold"),
+            font=("Times New Roman", 10, "bold"),
             padding=10,
             borderwidth=0
         )
@@ -79,7 +79,7 @@ class App(tk.Tk):
         ttk.Label(
             frame,
             text="Gerador de Relatórios",
-            font=("Georgia", 16, "bold"),
+            font=("Times New Roman", 16, "bold"),
             foreground="#F5F5F5"
         ).pack(pady=(0, 25))
 
@@ -87,7 +87,7 @@ class App(tk.Tk):
         name_entry = ttk.Entry(
             frame,
             width=35,
-            font=("Georgia", 10)
+            font=("Times New Roman", 10)
         )
         name_entry.pack(ipady=6)
 
@@ -95,7 +95,7 @@ class App(tk.Tk):
         process_entry = ttk.Entry(
             frame,
             width=35,
-            font=("Georgia", 10)
+            font=("Times New Roman", 10)
         )
         process_entry.pack(ipady=6)
 
@@ -113,7 +113,7 @@ class App(tk.Tk):
         ttk.Label(
             frame,
             text="RelSyS © 2025",
-            font=("Georgia", 9, "italic"),
+            font=("Times New Roman", 9, "italic"),
             foreground=self.subtext_color
         ).pack()
 
