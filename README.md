@@ -21,9 +21,9 @@ relsys/
 │   ├── document.py         # Funções de leitura e preenchimento de modelos
 │   ├── config.py           # Placeholders e configurações de documento
 │   ├── utils.py            # Funções auxiliares
-    ├── generator.py        # Gerador de senhas
-    ├── state.py            # Variáveis de estado
-    ├── ui.py               # Arquivo Principal
+│   ├── generator.py        # Gerador de senhas
+│   ├── state.py            # Variáveis de estado
+│   └── ui.py               # Arquivo Principal
 │
 ├── templates/
 │   └── welcome-model.docx  # Exemplo de modelo base
