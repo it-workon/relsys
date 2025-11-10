@@ -1,7 +1,10 @@
 from pathlib import Path
 
-SAVE_DIRECTORY = Path("output")
-TEMPLATE_PATH = Path("templates/welcome-model.docx")
+CORE_DIR = Path(__file__).resolve().parent
+BASE_DIR = CORE_DIR.parent
+
+TEMPLATES_DIR = BASE_DIR / "templates" / "welcome-model.docx"
+OUTPUT_DIR = BASE_DIR / "output"
 
 data = {
     "{{USER_NAME}}": "{NAME}",

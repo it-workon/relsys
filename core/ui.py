@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from generator import generate_password
 from document import generate_document
-
+from pathlib import Path
 class App(tk.Tk):
     def __init__(self):
         super().__init__()

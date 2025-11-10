@@ -1,6 +1,6 @@
 from docx import Document
 from pathlib import Path
-from config import data, TEMPLATE_PATH, SAVE_DIRECTORY
+from config import data, TEMPLATES_DIR, OUTPUT_DIR
 from utils import format_filename
 
 def replace_all_in_paragraph(par):
@@ -58,9 +58,9 @@ def generate_document(user_name: str, passwd: str, process_num: str) -> str:
     data["{PASSWD}"] = passwd
     data["{PROCESS}"] = process_num
 
-    output_file = SAVE_DIRECTORY / f"{format_filename(user_name)}.docx"
+    output_file = OUTPUT_DIR / f"{format_filename(user_name)}.docx"
 
-    fill_template(TEMPLATE_PATH, output_file, data)
+    fill_template(TEMPLATES_DIR, output_file, data)
     print("Documento gerado!")
     return str(output_file)
 
