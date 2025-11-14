@@ -16,5 +16,5 @@ data = {
     "{{VBD_PASSWD}}": "{PASSWD}",
     "{{FORTICLIENT_PASSWD}}": "workon2025",
     "{{PROCESS_NUMBER}}": "{PROCESS}",
-    "{{ASSET}}": "EMC-118450",
+    "{{ASSET}}": "XXX-000000",
 }

@@ -61,7 +61,7 @@ def generate_document(user_name: str, passwd: str, process_num: str) -> str:
     output_file = OUTPUT_DIR / f"{format_filename(user_name)}.docx"
 
     fill_template(TEMPLATES_DIR, output_file, data)
-    print("Documento gerado!")
+    
     return str(output_file)
 
 
