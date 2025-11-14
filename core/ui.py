@@ -7,7 +7,7 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("RelSyS - Emissor de Relatórios")
-        self.geometry("640x480")
+        self.geometry("820x620")
         self.configure(bg="#1E1E1E")
         self.resizable(False, False)
 
@@ -62,6 +62,14 @@ class App(tk.Tk):
         style.map(
             "Accent.TButton",
             background=[("active", "#4866E1"), ("pressed", "#384FC1")]
+        )
+
+        style.configure(
+            "Checklist.TCheckbutton",
+            background=self.bg_card,
+            foreground=self.text_color,
+            font=("Times New Roman", 10),
+            relief="flat"
         )
 
         notebook = ttk.Notebook(self)
@@ -135,6 +143,61 @@ class App(tk.Tk):
         frame = ttk.Frame(container, padding=40)
         frame.place(relx=0.5, rely=0.5, anchor="center")
 
+        self.check_vars = []
+
+        itens_software = [
+            "Criar o Suporte / Dar ADM ao suporte", "Logar no suporte", "Colocar WIFI",
+            "Colocar no domínio e o nome", "Entrar na minha conta",
+            "Baixar Chrome", "Baixar AnyDesk", "Baixar FortClient", "Baixar WINRAR",
+            "Baixar Office", "Baixar Gi", "Baixar Java", "Baixar Adobe",
+            "Baixar o BitDefender", "Baixar o PaperCut"
+        ]
+
+        itens_config = [
+            "Ativar Suporte", "Email / Assinatura", "Teams",
+            "GI", "Fortclient", "PaperCut", "Impressora", "Conferir Dowloads", "Imprimir Bem Vindo"
+        ]
+
+        duas_colunas = ttk.Frame(frame)
+        duas_colunas.pack(pady=20)
+
+        col1 = ttk.Frame(duas_colunas)
+        col1.grid(row=0, column=0, padx=30, sticky="nw")
+
+        ttk.Label(
+            col1, text="Primeiros Passos",
+            font=("Times New Roman", 12, "bold"),
+            foreground=self.subtext_color
+        ).pack(anchor="w", pady=(0, 10))
+
+        for item in itens_software:
+            var = tk.BooleanVar()
+            chk = ttk.Checkbutton(col1, text=item, variable=var, style="Checklist.TCheckbutton")
+            chk.pack(anchor="w")
+            self.check_vars.append(var)
+
+
+        col2 = ttk.Frame(duas_colunas)
+        col2.grid(row=0, column=1, padx=30, sticky="nw")
+
+        ttk.Label(
+            col2, text="Configurar",
+            font=("Times New Roman", 12, "bold"),
+            foreground=self.subtext_color
+        ).pack(anchor="w", pady=(0, 10))
+
+        for item in itens_config:
+            var = tk.BooleanVar()
+            chk = ttk.Checkbutton(col2, text=item, variable=var, style="Checklist.TCheckbutton")
+            chk.pack(anchor="w")
+            self.check_vars.append(var)
+
+        ttk.Button(
+            frame,
+            text="Limpar Checklist",
+            command=self.limpar_checklist
+        ).pack()
+
 
         ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
         ttk.Label(
@@ -143,6 +206,10 @@ class App(tk.Tk):
             font=("Times New Roman", 9, "italic"),
             foreground=self.subtext_color
         ).pack()
+
+    def limpar_checklist(self):
+        for var in self.check_vars:
+            var.set(False)
 
 if __name__ == "__main__":
     app = App()
