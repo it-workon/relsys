@@ -25,7 +25,7 @@ class App(tk.Tk):
             "TNotebook.Tab",
             background="#2E2E2E",
             padding=[18, 10],
-            font=("Times New Roman", 10, "bold"),
+            font=("Arial", 10, "bold"),
             foreground=self.subtext_color
         )
         style.map(
