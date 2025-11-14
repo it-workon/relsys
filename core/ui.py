@@ -71,8 +71,8 @@ class App(tk.Tk):
         notebook.add(tab_documents, text="Gerar Relatório")
         self.tab_create_docs(tab_documents)
         tab_sheets = ttk.Frame(notebook)
-        notebook.add(tab_sheets, text="Modificar Planilhas")
-        self.tab_modify_sheets(tab_sheets)
+        notebook.add(tab_sheets, text="Configuração Máquina")
+        self.tab_config_note(tab_sheets)
 
     def tab_create_docs(self, container):
         frame = ttk.Frame(container, padding=40)
@@ -131,9 +131,10 @@ class App(tk.Tk):
         except Exception as e:
             messagebox.showerror("Erro", str(e))
 
-    def tab_modify_sheets(self, container):
+    def tab_config_note(self, container):
         frame = ttk.Frame(container, padding=40)
         frame.place(relx=0.5, rely=0.5, anchor="center")
+
 
         ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
         ttk.Label(
