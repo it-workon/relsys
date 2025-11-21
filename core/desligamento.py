@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import messagebox
 from openpyxl import load_workbook
 
 CAMINHO_PLANILHA = r"Z:\NEW TECNOLOGIA\1 Documentação\2 Inventário\6 Colaboradores Desligados\Colaboradores desligados.xlsx"
