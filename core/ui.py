@@ -1,19 +1,20 @@
 import tkinter as tk
+import ttkbootstrap as tb
 from tkinter import ttk, messagebox
+from ttkbootstrap.constants import *
 from generator import generate_password
 from document import generate_document
 from desligamento import salvar_registro
 from pathlib import Path
-class App(tk.Tk):
+class App(tb.Window):
     def __init__(self):
-        super().__init__()
+        super().__init__(themename="darkly")
         self.title("RelSyS - Emissor de Relatórios")
         self.geometry("820x620")
         self.configure(bg="#1E1E1E")
         self.resizable(False, False)
 
-        style = ttk.Style(self)
-        style.theme_use("clam")
+        style = tb.Style()
 
         self.accent_color = "#5B7FFF"
         self.bg_main = "#1E1E1E"
