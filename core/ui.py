@@ -230,7 +230,7 @@ class App(tb.Window):
         ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
         ttk.Label(
             frame,
-            text="RelSyS © 2025",
+            text="RelSsyS © 2025",
             font=("Times New Roman", 9, "italic"),
             foreground=self.subtext_color
         ).pack()
