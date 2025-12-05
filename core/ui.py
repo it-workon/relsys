@@ -6,6 +6,8 @@ from generator import generate_password
 from document import generate_document
 from desligamento import salvar_registro
 from pathlib import Path
+from plan_note import salvar_plan_note
+
 class App(tb.Window):
     def __init__(self):
         super().__init__(themename="darkly")
@@ -226,7 +228,39 @@ class App(tb.Window):
         frame = ttk.Frame(container, padding=40)
         frame.place(relx=0.5, rely=0.5, anchor="center")
 
+        ttk.Label(
+            frame,
+            text="Planilhar Máquina",
+            font=("Times New Roman", 16, "bold"),
+            foreground=self.text_color
+        ).pack(pady=(0, 20))
         
+
+        campos_frame = ttk.Frame(frame)
+        campos_frame.pack(pady=20)
+
+        def campo(nome):
+            ttk.Label(campos_frame, text=nome).pack(anchor="w")
+            e = ttk.Entry(campos_frame, width=45)
+            e.pack(pady=3)
+            return e
+
+        self.pc_nome_entry = campo("Nome do computador:")
+        self.user_nome_entry = campo("Nome de usuário:")
+        self.colab_entry_plan = campo("Colaborador:")
+        self.dep_entry = campo("Departamento:")
+        self.patrimonio_entry = campo("Patrimônio:")
+        self.locadora_entry = campo("Locadora:")
+        self.modelo_entry = campo("Modelo:")
+        self.office_entry = campo("Office:")
+
+        ttk.Button(
+            frame,
+            text="Salvar na Planilha",
+            style="Accent.TButton",
+            command=self.on_save_plan_note
+        ).pack(pady=20)
+
         ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
         ttk.Label(
             frame,
@@ -234,6 +268,27 @@ class App(tb.Window):
             font=("Times New Roman", 9, "italic"),
             foreground=self.subtext_color
         ).pack()
+
+    def on_save_plan_note(self):
+        try:
+            path = salvar_plan_note(
+                self.pc_nome_entry.get(),
+                self.user_nome_entry.get(),
+                self.colab_entry_plan.get(),
+                self.dep_entry.get(),
+                self.patrimonio_entry.get(),
+                self.locadora_entry.get(),
+                self.modelo_entry.get(),
+                self.office_entry.get(),
+            )
+
+            messagebox.showinfo(
+                "Sucesso",
+                f"Registro salvo com sucesso!\n\nArquivo:\n{path}"
+            )
+
+        except Exception as e:
+            messagebox.showerror("Erro ao salvar", str(e))
 
 
     def tab_termination(self, container):
