@@ -1,12 +1,13 @@
-import tkinter as tk
+import tkinter as tk 
 import ttkbootstrap as tb
 from tkinter import ttk, messagebox
 from ttkbootstrap.constants import *
 from generator import generate_password
 from document import generate_document
 from desligamento import salvar_registro
-from pathlib import Path
 from plan_note import salvar_plan_note
+from ExternoEmail import salvar_email_externo
+from pathlib import Path
 
 class App(tb.Window):
     def __init__(self):
@@ -95,6 +96,71 @@ class App(tb.Window):
         notebook.add(tab_termination, text="Desligamento")
         self.tab_termination(tab_termination)
 
+        tab_externo_email = ttk.Frame(notebook)
+        notebook.add(tab_externo_email, text="E-mail Externo")
+        self.tab_externo_email(tab_externo_email)
+
+
+
+    def tab_externo_email(self, container):
+        frame = ttk.Frame(container, padding=40)
+        frame.place(relx=0.5, rely=0.5, anchor="center")
+
+        ttk.Label(
+            frame,
+            text="Cadastro — E-mail de Colaborador Externo",
+            font=("Times New Roman", 16, "bold"),
+            foreground=self.text_color
+        ).pack(pady=(0, 20))
+
+        campos_frame = ttk.Frame(frame)
+        campos_frame.pack(pady=20)
+
+        def campo(texto):
+            ttk.Label(campos_frame, text=texto).pack(anchor="w")
+            e = ttk.Entry(campos_frame, width=45)
+            e.pack(pady=3)
+            return e
+
+        self.nome_ext_entry = campo("Nome Completo:")
+        self.cliente_ext_entry = campo("Cliente:")
+        self.cc_ext_entry = campo("Centro de Custo:")
+        self.desc_ext_entry = campo("Descrição (opcional):")
+
+        ttk.Button(
+            frame,
+            text="Salvar E-mail Externo",
+            style="Accent.TButton",
+            command=self.on_save_externo_email
+        ).pack(pady=20)
+
+        ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
+        ttk.Label(
+            frame,
+            text="RelSyS © 2025",
+            font=("Times New Roman", 9, "italic"),
+            foreground=self.subtext_color
+        ).pack()
+
+    def on_save_externo_email(self):
+        try:
+            path = salvar_email_externo(
+                self.nome_ext_entry.get(),
+                self.cliente_ext_entry.get(),
+                self.cc_ext_entry.get(),
+                self.desc_ext_entry.get()
+            )
+
+            messagebox.showinfo(
+                "Sucesso",
+                f"E-mail externo salvo com sucesso!\n\nArquivo:\n{path}"
+            )
+
+        except Exception as e:
+            messagebox.showerror("Erro ao salvar", str(e))
+
+
+
     def tab_create_docs(self, container):
         frame = ttk.Frame(container, padding=40)
         frame.place(relx=0.5, rely=0.5, anchor="center")
@@ -107,50 +173,32 @@ class App(tb.Window):
         ).pack(pady=(0, 25))
 
         ttk.Label(frame, text="Nome (formato: nome.sobrenome)").pack(pady=(10, 5))
-        name_entry = ttk.Entry(
-            frame,
-            width=35,
-            font=("Times New Roman", 10)
-        )
+        name_entry = ttk.Entry(frame, width=35)
         name_entry.pack(ipady=6)
 
-        ttk.Label(frame, text="Número do processo (formato: XXXXXX)").pack(pady=(20, 5))
-        process_entry = ttk.Entry(
-            frame,
-            width=35,
-            font=("Times New Roman", 10)
-        )
+        ttk.Label(frame, text="Número do processo").pack(pady=(20, 5))
+        process_entry = ttk.Entry(frame, width=35)
         process_entry.pack(ipady=6)
 
         ttk.Button(
             frame,
             text="Gerar Relatório",
-            command=lambda: self.on_generate_document(
-                name_entry.get(),
-                process_num=process_entry.get()
-            ),
+            command=lambda: self.on_generate_document(name_entry.get(), process_num=process_entry.get()),
             style="Accent.TButton"
         ).pack(pady=30)
 
         ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
-        ttk.Label(
-            frame,
-            text="RelSyS © 2025",
-            font=("Times New Roman", 9, "italic"),
-            foreground=self.subtext_color
-        ).pack()
+        ttk.Label(frame, text="RelSyS © 2025", font=("Times New Roman", 9, "italic")).pack()
 
     def on_generate_document(self, user_name: str, process_num: str):
         try:
-            user_name = user_name.strip()
-            passwd = generate_password(user_name)
-            path = generate_document(user_name, passwd, process_num)
-            messagebox.showinfo(
-                "Sucesso",
-                f"Relatório gerado com sucesso!\n\nCaminho:\n{path}"
-            )
+            passwd = generate_password(user_name.strip())
+            path = generate_document(user_name.strip(), passwd, process_num)
+            messagebox.showinfo("Sucesso", f"Gerado!\n{path}")
         except Exception as e:
             messagebox.showerror("Erro", str(e))
+
+
 
     def tab_config_note(self, container):
         frame = ttk.Frame(container, padding=40)
@@ -175,66 +223,39 @@ class App(tb.Window):
         duas_colunas.pack(pady=20)
 
         col1 = ttk.Frame(duas_colunas)
-        col1.grid(row=0, column=0, padx=30, sticky="nw")
+        col1.grid(row=0, column=0, padx=30)
 
-        ttk.Label(
-            col1, text="Primeiros Passos",
-            font=("Times New Roman", 12, "bold"),
-            foreground=self.subtext_color
-        ).pack(anchor="w", pady=(0, 10))
-
+        ttk.Label(col1, text="Primeiros Passos", font=("Times New Roman", 12, "bold")).pack(anchor="w", pady=(0, 10))
         for item in itens_software:
             var = tk.BooleanVar()
-            chk = ttk.Checkbutton(col1, text=item, variable=var, style="Checklist.TCheckbutton")
-            chk.pack(anchor="w")
+            ttk.Checkbutton(col1, text=item, variable=var, style="Checklist.TCheckbutton").pack(anchor="w")
             self.check_vars.append(var)
-
 
         col2 = ttk.Frame(duas_colunas)
-        col2.grid(row=0, column=1, padx=30, sticky="nw")
+        col2.grid(row=0, column=1, padx=30)
 
-        ttk.Label(
-            col2, text="Configurar",
-            font=("Times New Roman", 12, "bold"),
-            foreground=self.subtext_color
-        ).pack(anchor="w", pady=(0, 10))
-
+        ttk.Label(col2, text="Configurar", font=("Times New Roman", 12, "bold")).pack(anchor="w", pady=(0, 10))
         for item in itens_config:
             var = tk.BooleanVar()
-            chk = ttk.Checkbutton(col2, text=item, variable=var, style="Checklist.TCheckbutton")
-            chk.pack(anchor="w")
+            ttk.Checkbutton(col2, text=item, variable=var, style="Checklist.TCheckbutton").pack(anchor="w")
             self.check_vars.append(var)
 
-        ttk.Button(
-            frame,
-            text="Limpar Checklist",
-            command=self.limpar_checklist
-        ).pack()
-
+        ttk.Button(frame, text="Limpar Checklist", command=self.limpar_checklist).pack()
 
         ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
-        ttk.Label(
-            frame,
-            text="RelSyS © 2025",
-            font=("Times New Roman", 9, "italic"),
-            foreground=self.subtext_color
-        ).pack()
+        ttk.Label(frame, text="RelSyS © 2025", font=("Times New Roman", 9, "italic")).pack()
 
     def limpar_checklist(self):
         for var in self.check_vars:
             var.set(False)
 
+
+
     def tab_plan_note(self, container):
         frame = ttk.Frame(container, padding=40)
         frame.place(relx=0.5, rely=0.5, anchor="center")
 
-        ttk.Label(
-            frame,
-            text="Planilhar Máquina",
-            font=("Times New Roman", 16, "bold"),
-            foreground=self.text_color
-        ).pack(pady=(0, 20))
-        
+        ttk.Label(frame, text="Planilhar Máquina", font=("Times New Roman", 16, "bold")).pack(pady=(0, 20))
 
         campos_frame = ttk.Frame(frame)
         campos_frame.pack(pady=20)
@@ -262,12 +283,7 @@ class App(tb.Window):
         ).pack(pady=20)
 
         ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
-        ttk.Label(
-            frame,
-            text="RelSyS © 2025",
-            font=("Times New Roman", 9, "italic"),
-            foreground=self.subtext_color
-        ).pack()
+        ttk.Label(frame, text="RelSyS © 2025", font=("Times New Roman", 9, "italic")).pack()
 
     def on_save_plan_note(self):
         try:
@@ -279,31 +295,20 @@ class App(tb.Window):
                 self.patrimonio_entry.get(),
                 self.locadora_entry.get(),
                 self.modelo_entry.get(),
-                self.office_entry.get(),
+                self.office_entry.get()
             )
-
-            messagebox.showinfo(
-                "Sucesso",
-                f"Registro salvo com sucesso!\n\nArquivo:\n{path}"
-            )
-
+            messagebox.showinfo("Sucesso", f"Registro salvo!\n{path}")
         except Exception as e:
-            messagebox.showerror("Erro ao salvar", str(e))
+            messagebox.showerror("Erro", str(e))
+
 
 
     def tab_termination(self, container):
         frame = ttk.Frame(container, padding=40)
         frame.place(relx=0.5, rely=0.5, anchor="center")
 
-        ttk.Label(
-            frame,
-            text="Checklist de Desligamento",
-            font=("Times New Roman", 16, "bold"),
-            foreground=self.text_color
-        ).pack(pady=(0, 20))
+        ttk.Label(frame, text="Checklist de Desligamento", font=("Times New Roman", 16, "bold")).pack(pady=(0, 20))
 
-
-    # --- CHECKLIST ---
         checks_frame = ttk.Frame(frame)
         checks_frame.pack()
 
@@ -330,8 +335,6 @@ class App(tb.Window):
         ttk.Checkbutton(col2, text="FortiClient", variable=self.forti_var, style="Checklist.TCheckbutton").pack(anchor="w")
         ttk.Checkbutton(col2, text="PaperCut", variable=self.papercut_var, style="Checklist.TCheckbutton").pack(anchor="w")
 
-
-    # --- CAMPOS DE TEXTO ---
         campos_frame = ttk.Frame(frame)
         campos_frame.pack(pady=20)
 
@@ -348,8 +351,6 @@ class App(tb.Window):
         self.zeev_entry = campo("Zeev:")
         self.termo_entry = campo("Termo (link):")
 
-
-    # --- BOTÃO SALVAR ---
         ttk.Button(
             frame,
             text="Salvar na Planilha",
@@ -358,12 +359,7 @@ class App(tb.Window):
         ).pack(pady=20)
 
         ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
-        ttk.Label(
-            frame,
-            text="RelSyS © 2025",
-            font=("Times New Roman", 9, "italic"),
-            foreground=self.subtext_color
-        ).pack()
+        ttk.Label(frame, text="RelSyS © 2025", font=("Times New Roman", 9, "italic")).pack()
 
     def on_save_termination(self):
         try:
@@ -380,16 +376,12 @@ class App(tb.Window):
                 self.aut_entry.get(),
                 self.data_entry.get(),
                 self.zeev_entry.get(),
-                self.termo_entry.get(),
+                self.termo_entry.get()
             )
-
-            messagebox.showinfo(
-                "Sucesso",
-                f"Registro salvo com sucesso!\n\nArquivo:\n{path}"
-            )
-
+            messagebox.showinfo("Sucesso", f"Registro salvo!\n{path}")
         except Exception as e:
-            messagebox.showerror("Erro ao salvar", str(e))    
+            messagebox.showerror("Erro ao salvar", str(e))
+
 
 if __name__ == "__main__":
     app = App()
