@@ -1,5 +1,4 @@
 import os
-from design import Design
 def format_filename(user_name: str, directory: str = ".") -> str:
     
     parts = user_name.split(".")

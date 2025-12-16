@@ -3,11 +3,12 @@ from tkinter import ttk
 from ttkbootstrap.constants import *
 from style import apply_styles
 
-from core.tabs.document import tab_create_docs
-from core.tabs.checklist import ChecklistTab
-from core.tabs.plan import tab_plan_note
-from core.tabs.termination import tab_termination
-from common import Design
+from tabs.checklist import ChecklistTab
+from tabs.document import generate_document
+from tabs.plan import tab_plan_note
+from tabs.termination import tab_termination
+
+from design import Design
 
 class App(tb.Window):
     def __init__(self):
@@ -26,7 +27,7 @@ class App(tb.Window):
         # generate document tab
         tab_documents = ttk.Frame(notebook)
         notebook.add(tab_documents, text="Gerar Relatório")
-        tab_create_docs(self, tab_documents)
+        tab_documents(self, tab_documents)
 
         # checklist tab
         tab_sheets = ttk.Frame(notebook)
