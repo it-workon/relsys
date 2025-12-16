@@ -1,8 +1,8 @@
-from base import Design
-from Colors import Colors
-from Padding import Padding
-from Typography import Typography
-from Components import Components
+from design import Design
+from colors import Colors
+from padding import Padding
+from typography import Typography
+from components import Components
 
 # Injeta como atributos do Design (namespace)
 Design.Colors = Colors

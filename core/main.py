@@ -3,10 +3,10 @@ from tkinter import ttk
 from ttkbootstrap.constants import *
 from style import apply_styles
 
-from tabs.documents_tab import tab_create_docs
-from tabs.checklist_tab import ChecklistTab
-from tabs.plan_tab import tab_plan_note
-from tabs.termination_tab import tab_termination
+from core.tabs.document import tab_create_docs
+from core.tabs.checklist import ChecklistTab
+from core.tabs.plan import tab_plan_note
+from core.tabs.termination import tab_termination
 from common import Design
 
 class App(tb.Window):
