@@ -11,3 +11,5 @@ class Colors(Design):
 
     Accent_hover = "#4866E1"
     Accent_pressed = "#384FC1"
+    
+    new_color = "#795823"

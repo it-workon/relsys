@@ -1,9 +1,9 @@
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
-from design import Colors
-from padding import Padding
-from typography import Typography
+from Design import Colors
+from Padding import Padding
+from Typography import Typography
 
 
 class Components:

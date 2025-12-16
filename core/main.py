@@ -7,14 +7,14 @@ from tabs.documents_tab import tab_create_docs
 from tabs.checklist_tab import ChecklistTab
 from tabs.plan_tab import tab_plan_note
 from tabs.termination_tab import tab_termination
-
+from common import Design
 
 class App(tb.Window):
     def __init__(self):
         super().__init__(themename="darkly")
         self.title("RelSyS - Emissor de Relatórios")
         self.geometry("820x620")
-        self.configure(bg="#1E1E1E")
+        self.configure(bg=Design.Colors.Bg_main)
         self.resizable(False, False)
 
         # apply styles from style.py
