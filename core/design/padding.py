@@ -1,4 +1,4 @@
-from base import Design
+from design import Design
 
 class Padding(Design):
     Xs = 4

@@ -1,4 +1,4 @@
-from base import Design
+from design import Design
 
 class Typography(Design):
     Font_base = ("Times New Roman", 10)

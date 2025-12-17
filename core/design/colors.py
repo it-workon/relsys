@@ -1,4 +1,4 @@
-from base import Design
+from design import Design
 
 class Colors(Design):
     Accent = "#5B7FFF"
