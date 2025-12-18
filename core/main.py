@@ -7,8 +7,8 @@ from design import Design
 
 from ui.document_ui import tab_create_docs
 from ui.checklist_ui import tab_checklist
+from ui.plan_ui import tab_plan
 
-# from tabs.plan import tab_plan_note
 # from tabs.termination import tab_termination
 
 
@@ -27,9 +27,9 @@ class App(tb.Window):
         notebook.pack(expand=True, fill="both", padx=25, pady=25)
 
         # Document tab
-        tab_documents = ttk.Frame(notebook)
-        notebook.add(tab_documents, text="Gerar Relatório")
-        tab_create_docs(self, tab_documents)
+        tab_documents_frame = ttk.Frame(notebook)
+        notebook.add(tab_documents_frame, text="Gerar Relatório")
+        tab_create_docs(self, tab_documents_frame)
 
         # Checklist tab
         tab_checklist_frame = ttk.Frame(notebook)
@@ -37,9 +37,9 @@ class App(tb.Window):
         tab_checklist(self, tab_checklist_frame)
 
         # Plan tab
-        # tab_plan = ttk.Frame(notebook)
-        # notebook.add(tab_plan, text="Planilhar Máquina")
-        # tab_plan_note(self, tab_plan)
+        tab_plan_frame = ttk.Frame(notebook)
+        notebook.add(tab_plan_frame, text="Planilhar Máquina")
+        tab_plan(self, tab_plan_frame)
 
         # Termination tab
         # tab_term = ttk.Frame(notebook)

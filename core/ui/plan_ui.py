@@ -1,66 +1,52 @@
-from openpyxl import load_workbook, Workbook
-from openpyxl.styles import Alignment, Border, Side
-
-CAMINHO_PLANILHA_MAQ = r"Z:\NEW TECNOLOGIA\1 Documentação\2 Inventário\1 Máquinas\_Relacao_Notebooks_Desktops_atual.xlsx"
-NOME_ABA_MAQ = "Notebooks"
+from tkinter import ttk, messagebox
+from services.plan_service import register_machine_plan
 
 
-def tab_plan_note(
-    nome_pc,
-    nome_usuario,
-    colaborador,
-    departamento,
-    patrimonio,
-    locadora,
-    modelo,
-    office,
-):
-    try:
-        wb = load_workbook(CAMINHO_PLANILHA_MAQ)
-    except FileNotFoundError:
-        wb = Workbook()
+def tab_plan(app, container):
+    frame = ttk.Frame(container, padding=40)
+    frame.place(relx=0.5, rely=0.5, anchor="center")
 
-    if NOME_ABA_MAQ not in wb.sheetnames:
-        ws = wb.create_sheet(NOME_ABA_MAQ)
-        ws.append(
-            [
-                "Nome do Computador",
-                "Nome de Usuário",
-                "Colaborador",
-                "Departamento",
-                "Patrimônio",
-                "Locadora",
-                "Modelo",
-                "Office",
-            ]
-        )
-    else:
-        ws = wb[NOME_ABA_MAQ]
+    ttk.Label(
+        frame,
+        text="Plano de Máquina",
+        font=("Times New Roman", 16, "bold"),
+        foreground=app.colors["text_color"],
+    ).pack(pady=(0, 25))
 
-    linha = ws.max_row + 1
-
-    valores = [
-        nome_pc.upper(),
-        nome_usuario,
-        colaborador,
-        departamento,
-        patrimonio,
-        locadora,
-        modelo,
-        office,
+    fields = [
+        ("Nome do Computador", "computer_name"),
+        ("Nome de Usuário", "username"),
+        ("Colaborador", "employee_name"),
+        ("Departamento", "department"),
+        ("Patrimônio", "asset_tag"),
+        ("Locadora", "leasing_company"),
+        ("Modelo", "model"),
+        ("Office", "office_version"),
     ]
 
-    borda_fina = Border(
-        left=Side(style="thin"),
-        right=Side(style="thin"),
-        top=Side(style="thin"),
-        bottom=Side(style="thin"),
-    )
+    entries = {}
 
-    for col, valor in enumerate(valores, start=1):
-        cel = ws.cell(row=linha, column=col, value=valor)
-        cel.alignment = Alignment(horizontal="center", vertical="center")
-        cel.border = borda_fina
+    for label_text, key in fields:
+        ttk.Label(frame, text=label_text).pack(anchor="w", pady=(10, 2))
+        entry = ttk.Entry(frame, width=40)
+        entry.pack(ipady=5)
+        entries[key] = entry
 
-    wb.save(CAMINHO_PLANILHA_MAQ)
-    return CAMINHO_PLANILHA_MAQ
+    def on_save_plan():
+        try:
+            path = register_machine_plan(
+                **{key: entry.get().strip() for key, entry in entries.items()}
+            )
+            messagebox.showinfo(
+                "Sucesso",
+                f"Plano registrado com sucesso!\n\nCaminho:\n{path}",
+            )
+        except Exception as exc:
+            messagebox.showerror("Erro", str(exc))
+
+    ttk.Button(
+        frame,
+        text="Registrar Plano",
+        command=on_save_plan,
+        style="Accent.TButton",
+    ).pack(pady=25)
