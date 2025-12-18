@@ -1,111 +1,93 @@
-# checklist_tab.py
 import tkinter as tk
 from tkinter import ttk
 
 
-class ChecklistTab:
-    def __init__(self, colors):
-        self.colors = colors
-        self.check_vars = []
+def tab_checklist(app, container):
+    frame = ttk.Frame(container, padding=40)
+    frame.place(relx=0.5, rely=0.5, anchor="center")
 
-    def build(self, container):
-        frame = ttk.Frame(container, padding=40, style="TFrame")
-        frame.place(relx=0.5, rely=0.5, anchor="center")
+    checklist_vars = []
 
-        itens_software = [
-            "Criar o Suporte / Dar ADM ao suporte",
-            "Logar no suporte",
-            "Colocar WIFI",
-            "Colocar no domínio e o nome",
-            "Entrar na minha conta",
-            "Baixar Chrome",
-            "Baixar AnyDesk",
-            "Baixar FortClient",
-            "Baixar WINRAR",
-            "Baixar Office",
-            "Baixar Gi",
-            "Baixar Java",
-            "Baixar Adobe",
-            "Baixar o BitDefender",
-            "Baixar o PaperCut",
-        ]
+    software_items = [
+        "Criar o Suporte / Dar ADM ao suporte",
+        "Logar no suporte",
+        "Colocar WIFI",
+        "Colocar no domínio e o nome",
+        "Entrar na minha conta",
+        "Baixar Chrome",
+        "Baixar AnyDesk",
+        "Baixar FortClient",
+        "Baixar WINRAR",
+        "Baixar Office",
+        "Baixar Gi",
+        "Baixar Java",
+        "Baixar Adobe",
+        "Baixar o BitDefender",
+        "Baixar o PaperCut",
+    ]
 
-        itens_config = [
-            "Ativar Suporte",
-            "Email / Assinatura",
-            "Teams",
-            "GI",
-            "Fortclient",
-            "PaperCut",
-            "Impressora",
-            "Conferir Dowloads",
-            "Imprimir Bem Vindo",
-        ]
+    config_items = [
+        "Ativar Suporte",
+        "Email / Assinatura",
+        "Teams",
+        "GI",
+        "Fortclient",
+        "PaperCut",
+        "Impressora",
+        "Conferir Dowloads",
+        "Imprimir Bem Vindo",
+    ]
 
-        duas_colunas = ttk.Frame(frame, style="TFrame")
-        duas_colunas.pack(pady=20)
+    ttk.Label(
+        frame,
+        text="Checklist de Preparação",
+        font=("Times New Roman", 16, "bold"),
+        foreground=app.colors["text_color"],
+    ).pack(pady=(0, 25))
 
-        # =============================
-        #       COLUNA 1 - SOFTWARE
-        # =============================
-        col1 = ttk.Frame(duas_colunas, style="TFrame")
-        col1.grid(row=0, column=0, padx=30, sticky="nw")
+    columns_container = ttk.Frame(frame)
+    columns_container.pack(pady=20)
+
+    def build_column(parent, title, items):
+        column = ttk.Frame(parent)
+        column.pack(side="left", padx=30, anchor="n")
 
         ttk.Label(
-            col1,
-            text="Primeiros Passos",
-            style="TLabel",
+            column,
+            text=title,
             font=("Times New Roman", 12, "bold"),
-            foreground=self.colors["subtext_color"],
+            foreground=app.colors["subtext_color"],
         ).pack(anchor="w", pady=(0, 10))
 
-        for item in itens_software:
+        for item in items:
             var = tk.BooleanVar()
-            chk = ttk.Checkbutton(
-                col1, text=item, variable=var, style="Checklist.TCheckbutton"
-            )
-            chk.pack(anchor="w")
-            self.check_vars.append(var)
+            ttk.Checkbutton(
+                column,
+                text=item,
+                variable=var,
+                style="Checklist.TCheckbutton",
+            ).pack(anchor="w")
+            checklist_vars.append(var)
 
-        # =============================
-        #       COLUNA 2 - CONFIG
-        # =============================
-        col2 = ttk.Frame(duas_colunas, style="TFrame")
-        col2.grid(row=0, column=1, padx=30, sticky="nw")
+    build_column(columns_container, "Primeiros Passos", software_items)
+    build_column(columns_container, "Configurar", config_items)
 
-        ttk.Label(
-            col2,
-            text="Configurar",
-            style="TLabel",
-            font=("Times New Roman", 12, "bold"),
-            foreground=self.colors["subtext_color"],
-        ).pack(anchor="w", pady=(0, 10))
-
-        for item in itens_config:
-            var = tk.BooleanVar()
-            chk = ttk.Checkbutton(
-                col2, text=item, variable=var, style="Checklist.TCheckbutton"
-            )
-            chk.pack(anchor="w")
-            self.check_vars.append(var)
-
-        ttk.Button(
-            frame,
-            text="Limpar Checklist",
-            style="Accent.TButton",
-            command=self.clear_checklist,
-        ).pack(pady=15)
-
-        ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
-
-        ttk.Label(
-            frame,
-            text="RelSyS © 2025",
-            style="TLabel",
-            font=("Times New Roman", 9, "italic"),
-            foreground=self.colors["subtext_color"],
-        ).pack()
-
-    def clear_checklist(self):
-        for var in self.check_vars:
+    def clear_checklist():
+        for var in checklist_vars:
             var.set(False)
+
+    ttk.Button(
+        frame,
+        text="Limpar Checklist",
+        command=clear_checklist,
+        style="Accent.TButton",
+    ).pack(pady=20)
+
+    ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
+
+    ttk.Label(
+        frame,
+        text="RelSyS © 2025",
+        font=("Times New Roman", 9, "italic"),
+        foreground=app.colors["subtext_color"],
+    ).pack()

@@ -6,8 +6,8 @@ from style import apply_styles
 from design import Design
 
 from ui.document_ui import tab_create_docs
+from ui.checklist_ui import tab_checklist
 
-# from tabs.checklist import ChecklistTab
 # from tabs.plan import tab_plan_note
 # from tabs.termination import tab_termination
 
@@ -32,9 +32,9 @@ class App(tb.Window):
         tab_create_docs(self, tab_documents)
 
         # Checklist tab
-        # tab_sheets = ttk.Frame(notebook)
-        # notebook.add(tab_sheets, text="Checklist Máquina")
-        # ChecklistTab(self, tab_sheets)
+        tab_checklist_frame = ttk.Frame(notebook)
+        notebook.add(tab_checklist_frame, text="Checklist")
+        tab_checklist(self, tab_checklist_frame)
 
         # Plan tab
         # tab_plan = ttk.Frame(notebook)
