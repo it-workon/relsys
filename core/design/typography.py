@@ -1,6 +1,4 @@
-from design import Design
-
-class Typography(Design):
+class Typography:
     Font_base = ("Times New Roman", 10)
     Font_bold = ("Times New Roman", 10, "bold")
 

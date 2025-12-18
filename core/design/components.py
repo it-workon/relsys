@@ -1,8 +1,6 @@
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
-from design import Design
-
 class Components:
     @staticmethod
     def apply(style: tb.Style):

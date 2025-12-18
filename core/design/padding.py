@@ -1,6 +1,4 @@
-from design import Design
-
-class Padding(Design):
+class Padding:
     Xs = 4
     Xs = 4
     Sm = 8

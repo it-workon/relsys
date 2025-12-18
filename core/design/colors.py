@@ -1,6 +1,4 @@
-from design import Design
-
-class Colors(Design):
+class Colors:
     Accent = "#5B7FFF"
 
     Bg_main = "#1E1E1E"
