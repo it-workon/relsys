@@ -8,8 +8,7 @@ from design import Design
 from ui.document_ui import tab_create_docs
 from ui.checklist_ui import tab_checklist
 from ui.plan_ui import tab_plan
-
-# from tabs.termination import tab_termination
+from ui.termination_ui import tab_termination
 
 
 class App(tb.Window):
@@ -17,7 +16,7 @@ class App(tb.Window):
         super().__init__(themename="darkly")
 
         self.title("RelSyS - Emissor de Relatórios")
-        self.geometry("820x620")
+        self.geometry("1168x864")
         self.configure(bg=Design.Colors.Bg_main)
         self.resizable(False, False)
 
@@ -42,9 +41,9 @@ class App(tb.Window):
         tab_plan(self, tab_plan_frame)
 
         # Termination tab
-        # tab_term = ttk.Frame(notebook)
-        # notebook.add(tab_term, text="Desligamento")
-        # tab_termination(self, tab_term)
+        tab_term_frame = ttk.Frame(notebook)
+        notebook.add(tab_term_frame, text="Desligamento")
+        tab_termination(self, tab_term_frame)
 
 
 if __name__ == "__main__":

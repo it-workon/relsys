@@ -4,7 +4,7 @@ from common.config import data, TEMPLATES_DIR, OUTPUT_DIR
 from common.generator import generate_password
 from common.utils import format_filename
 
-from infra.document_template import fill_template
+from infra.document_infra import fill_template
 
 
 def generate_document(user_name: str, process_num: str) -> str:
