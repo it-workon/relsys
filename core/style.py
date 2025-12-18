@@ -19,12 +19,12 @@ def apply_styles(window):
         background="#2E2E2E",
         padding=[18, 10],
         font=("Arial", 10, "bold"),
-        foreground=subtext_color
+        foreground=subtext_color,
     )
     style.map(
         "TNotebook.Tab",
         background=[("selected", accent_color)],
-        foreground=[("selected", "white")]
+        foreground=[("selected", "white")],
     )
 
     # frames
@@ -35,32 +35,23 @@ def apply_styles(window):
         "TLabel",
         background=bg_card,
         font=("Times New Roman", 10),
-        foreground=text_color
+        foreground=text_color,
     )
 
     # buttons
     style.configure(
-        "TButton",
-        font=("Times New Roman", 10, "bold"),
-        padding=10,
-        borderwidth=0
+        "TButton", font=("Times New Roman", 10, "bold"), padding=10, borderwidth=0
     )
     style.map(
-        "TButton",
-        background=[("active", "#4866E1")],
-        foreground=[("active", "white")]
+        "TButton", background=[("active", "#4866E1")], foreground=[("active", "white")]
     )
 
     # accent button
     style.configure(
-        "Accent.TButton",
-        background=accent_color,
-        foreground="white",
-        relief="flat"
+        "Accent.TButton", background=accent_color, foreground="white", relief="flat"
     )
     style.map(
-        "Accent.TButton",
-        background=[("active", "#4866E1"), ("pressed", "#384FC1")]
+        "Accent.TButton", background=[("active", "#4866E1"), ("pressed", "#384FC1")]
     )
 
     # checkboxes
@@ -69,7 +60,7 @@ def apply_styles(window):
         background=bg_card,
         foreground=text_color,
         font=("Times New Roman", 10),
-        relief="flat"
+        relief="flat",
     )
 
     # return colors to be reutilized
@@ -78,5 +69,5 @@ def apply_styles(window):
         "bg_main": bg_main,
         "bg_card": bg_card,
         "text_color": text_color,
-        "subtext_color": subtext_color
+        "subtext_color": subtext_color,
     }

@@ -13,17 +13,33 @@ class ChecklistTab:
         frame.place(relx=0.5, rely=0.5, anchor="center")
 
         itens_software = [
-            "Criar o Suporte / Dar ADM ao suporte", "Logar no suporte", "Colocar WIFI",
-            "Colocar no domínio e o nome", "Entrar na minha conta",
-            "Baixar Chrome", "Baixar AnyDesk", "Baixar FortClient", "Baixar WINRAR",
-            "Baixar Office", "Baixar Gi", "Baixar Java", "Baixar Adobe",
-            "Baixar o BitDefender", "Baixar o PaperCut"
+            "Criar o Suporte / Dar ADM ao suporte",
+            "Logar no suporte",
+            "Colocar WIFI",
+            "Colocar no domínio e o nome",
+            "Entrar na minha conta",
+            "Baixar Chrome",
+            "Baixar AnyDesk",
+            "Baixar FortClient",
+            "Baixar WINRAR",
+            "Baixar Office",
+            "Baixar Gi",
+            "Baixar Java",
+            "Baixar Adobe",
+            "Baixar o BitDefender",
+            "Baixar o PaperCut",
         ]
 
         itens_config = [
-            "Ativar Suporte", "Email / Assinatura", "Teams",
-            "GI", "Fortclient", "PaperCut", "Impressora",
-            "Conferir Dowloads", "Imprimir Bem Vindo"
+            "Ativar Suporte",
+            "Email / Assinatura",
+            "Teams",
+            "GI",
+            "Fortclient",
+            "PaperCut",
+            "Impressora",
+            "Conferir Dowloads",
+            "Imprimir Bem Vindo",
         ]
 
         duas_colunas = ttk.Frame(frame, style="TFrame")
@@ -40,16 +56,13 @@ class ChecklistTab:
             text="Primeiros Passos",
             style="TLabel",
             font=("Times New Roman", 12, "bold"),
-            foreground=self.colors["subtext_color"]
+            foreground=self.colors["subtext_color"],
         ).pack(anchor="w", pady=(0, 10))
 
         for item in itens_software:
             var = tk.BooleanVar()
             chk = ttk.Checkbutton(
-                col1,
-                text=item,
-                variable=var,
-                style="Checklist.TCheckbutton"
+                col1, text=item, variable=var, style="Checklist.TCheckbutton"
             )
             chk.pack(anchor="w")
             self.check_vars.append(var)
@@ -65,16 +78,13 @@ class ChecklistTab:
             text="Configurar",
             style="TLabel",
             font=("Times New Roman", 12, "bold"),
-            foreground=self.colors["subtext_color"]
+            foreground=self.colors["subtext_color"],
         ).pack(anchor="w", pady=(0, 10))
 
         for item in itens_config:
             var = tk.BooleanVar()
             chk = ttk.Checkbutton(
-                col2,
-                text=item,
-                variable=var,
-                style="Checklist.TCheckbutton"
+                col2, text=item, variable=var, style="Checklist.TCheckbutton"
             )
             chk.pack(anchor="w")
             self.check_vars.append(var)
@@ -83,7 +93,7 @@ class ChecklistTab:
             frame,
             text="Limpar Checklist",
             style="Accent.TButton",
-            command=self.clear_checklist
+            command=self.clear_checklist,
         ).pack(pady=15)
 
         ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
@@ -93,7 +103,7 @@ class ChecklistTab:
             text="RelSyS © 2025",
             style="TLabel",
             font=("Times New Roman", 9, "italic"),
-            foreground=self.colors["subtext_color"]
+            foreground=self.colors["subtext_color"],
         ).pack()
 
     def clear_checklist(self):

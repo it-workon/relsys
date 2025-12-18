@@ -11,7 +11,7 @@ def tab_create_docs(app, container):
         frame,
         text="Gerador de Relatórios",
         font=("Times New Roman", 16, "bold"),
-        foreground="#F5F5F5"
+        foreground="#F5F5F5",
     ).pack(pady=(0, 25))
 
     ttk.Label(frame, text="Nome (formato: nome.sobrenome)").pack(pady=(10, 5))
@@ -26,12 +26,11 @@ def tab_create_docs(app, container):
         try:
             path = generate_document(
                 user_name=name_entry.get().strip(),
-                process_num=process_entry.get().strip()
+                process_num=process_entry.get().strip(),
             )
 
             messagebox.showinfo(
-                "Sucesso",
-                f"Relatório gerado com sucesso!\n\nCaminho:\n{path}"
+                "Sucesso", f"Relatório gerado com sucesso!\n\nCaminho:\n{path}"
             )
         except Exception as e:
             messagebox.showerror("Erro", str(e))
@@ -40,7 +39,7 @@ def tab_create_docs(app, container):
         frame,
         text="Gerar Relatório",
         command=on_generate_document,
-        style="Accent.TButton"
+        style="Accent.TButton",
     ).pack(pady=30)
 
     ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
@@ -49,5 +48,5 @@ def tab_create_docs(app, container):
         frame,
         text="RelSyS © 2025",
         font=("Times New Roman", 9, "italic"),
-        foreground=app.colors["subtext_color"]
+        foreground=app.colors["subtext_color"],
     ).pack()

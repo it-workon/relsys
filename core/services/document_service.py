@@ -21,9 +21,7 @@ def generate_document(user_name: str, process_num: str) -> str:
     output_file = OUTPUT_DIR / f"{format_filename(user_name)}.docx"
 
     fill_template(
-        template_path=Path(TEMPLATES_DIR),
-        output_path=output_file,
-        data=replacements
+        template_path=Path(TEMPLATES_DIR), output_path=output_file, data=replacements
     )
 
     return str(output_file)

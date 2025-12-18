@@ -3,12 +3,12 @@ from docx import Document
 
 
 def _get_full_paragraph_text(par):
-    return ''.join(run.text for run in par.runs)
+    return "".join(run.text for run in par.runs)
 
 
 def _set_paragraph_text(par, text):
     for run in par.runs:
-        run.text = ''
+        run.text = ""
     if par.runs:
         par.runs[0].text = text
     else:

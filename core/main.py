@@ -6,6 +6,7 @@ from style import apply_styles
 from design import Design
 
 from ui.document_ui import tab_create_docs
+
 # from tabs.checklist import ChecklistTab
 # from tabs.plan import tab_plan_note
 # from tabs.termination import tab_termination
