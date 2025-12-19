@@ -2,129 +2,141 @@
 
 ## Visão Geral
 
-O **RelSyS** é uma aplicação desktop desenvolvida em Python para automatizar e padronizar rotinas internas do setor de TI, reduzindo tarefas manuais, erros operacionais e retrabalho.
+O **RelSyS** é uma aplicação desktop desenvolvida em **Python** para automatizar e padronizar rotinas internas do setor de TI.  
+Seu objetivo é reduzir tarefas manuais, minimizar erros operacionais e centralizar processos recorrentes em uma única ferramenta.
 
-O sistema centraliza funcionalidades como:
-
-- Geração de relatórios e documentos
-- Checklists operacionais
-- Planilhamento de máquinas
-- Registro de desligamento de colaboradores
-
-O projeto evoluiu para uma **arquitetura em camadas (UI, Service e Infra)**, aliada a um **Design System próprio**, garantindo consistência visual, manutenibilidade e facilidade de evolução.
+O projeto utiliza **arquitetura em camadas** e um **Design System próprio**, garantindo organização, consistência visual e facilidade de manutenção.
 
 ---
 
-## Funcionalidades Principais
+## Funcionalidades
 
-- Geração automatizada de relatórios
+- Geração automatizada de relatórios e documentos
 - Checklist de preparação de máquinas
 - Registro de máquinas em planilhas corporativas
 - Checklist e registro de desligamento de colaboradores
 - Interface gráfica desktop com navegação por abas
-- Integração com planilhas Excel (.xlsx)
-- Padronização visual via Design System
+- Integração com arquivos Excel (`.xlsx`)
+- Design System centralizado para padronização visual
 
 ---
 
-## Arquitetura do Projeto
+## Estrutura de Pastas
 
-O projeto segue uma separação clara de responsabilidades:
-
-- **UI**: Camada de interface gráfica (Tkinter / ttkbootstrap)
-- **Services**: Regras de negócio e orquestração
-- **Infra**: Acesso a arquivos, planilhas e recursos externos
-- **Design**: Design System (cores, tipografia, espaçamentos e componentes)
-
+A organização do projeto segue uma separação clara de responsabilidades:
 ```
 relsys/
-│
 ├── core/
-│ ├── main.py # Ponto de entrada da aplicação
-│
-├── ui/
-│ ├── document_ui.py
-│ ├── checklist_ui.py
-│ ├── plan_ui.py
-│ └── termination_ui.py
-│
-├── services/
-│ ├── document_service.py
-│ ├── plan_service.py
-│ └── termination_service.py
-│
-├── infra/
-│ ├── document_repository.py
-│ ├── plan_repository.py
-│ └── termination_repository.py
-│
-├── design/
-│ ├── design.py # Tokens de design
-│ ├── apply.py # Aplicação global do tema
-│ ├── components.py # Estilos e componentes reutilizáveis
-│ ├── colors.py
-│ ├── typography.py
-│ └── padding.py
-│
-├── requirements.txt
+│   ├── common/ # Utilitários e helpers compartilhados
+│   ├── design/ # Design System (cores, tipografia, padding, componentes)
+│   ├── infra/ # Camada de infraestrutura (acesso a arquivos/planilhas)
+│   ├── services/ # Regras de negócio
+│   ├── ui/ # Interfaces gráficas (Tkinter / ttkbootstrap)
+│   └── main.py # Ponto de entrada da aplicação
+├── output/ # Arquivos gerados pelo sistema
+├── templates/ # Templates de documentos
+├── requirements.txt # Dependências do projeto
+├── LICENSE
 └── README.md
 ```
 
 ---
 
+## Arquitetura
+
+O RelSyS utiliza uma **Layered Architecture simples**:
+
+- **UI**  
+  Responsável apenas pela interface gráfica e interação com o usuário.
+
+- **Services**  
+  Contém a lógica de negócio e orquestração das operações.
+
+- **Infra**  
+  Responsável por acesso a arquivos, planilhas e recursos externos.
+
+- **Design**  
+  Centraliza todo o estilo visual do sistema (Design System).
+
+Essa separação facilita manutenção, testes e evolução do projeto.
+
+---
+
 ## Design System
 
-O Design System centraliza toda a identidade visual do projeto:
+O Design System garante consistência visual em toda a aplicação e evita estilos espalhados pela UI.
 
-- **Cores** (`Design.Colors`)
-- **Tipografia** (`Design.Typography`)
-- **Espaçamentos** (`Design.Padding`)
-- **Componentes reutilizáveis** (`components.py`)
+Componentes principais:
+- **Colors** – Paleta de cores
+- **Typography** – Fontes e pesos
+- **Padding** – Espaçamentos padronizados
+- **Components** – Estilos reutilizáveis de `ttk` (botões, labels, frames, checkboxes)
 
-Isso permite alterações globais de estilo sem impactar a lógica das telas.
+Nenhuma tela define estilos diretamente — tudo é reutilizado a partir do Design System.
 
 ---
 
 ## Requisitos
 
-- Python **3.10+**
+- Python **3.10 ou superior**
 - Sistema operacional com suporte a interface gráfica
 
-### Bibliotecas principais
+### Dependências principais
 
-- `tkinter` (incluso no Python)
+- `tkinter` (já incluso no Python)
 - `ttkbootstrap`
 - `openpyxl`
 
-Instalação das dependências:
+---
 
-```bash
-pip install -r requirements.txt
+## Ambiente Virtual (venv)
+
+Recomenda-se o uso de um ambiente virtual para isolar as dependências do projeto.
+
+### Criar o ambiente virtual
+
+```
+python -m venv .venv
 ```
 
-## Execução
+### Ativar o ambiente virtual
 
-Para iniciar o sistema:
+*Linux / macOS:*
+```
+source .venv/bin/activate
+```
 
+*Windows:*
+```
+.venv\Scripts\activate
+```
+## Instalar dependências
+```
+pip install -r requirements.txt
+```
+## Executando o Projeto
+
+- Com o ambiente virtual ativado:
 ```
 python core/main.py
 ```
 
-A aplicação será aberta com interface gráfica e navegação por abas.
+**A aplicação será iniciada com interface gráfica e navegação por abas.**
 
-## Boas Práticas do Projeto
+## Boas Práticas Adotadas
 
 - UI sem lógica de negócio
 
-- Services sem dependência de interface
+- Services independentes da interface
 
-- Infra responsável apenas por I/O
+- Infra isolada para I/O
 
-- Estilo visual nunca definido diretamente na UI
+- Design System centralizado
 
-- Componentes reutilizáveis centralizados no Design System
+- Código organizado e fácil de evoluir
 
 ## Licença
 
 **Projeto de uso interno e restrito.**
+
 **Redistribuição ou modificação sem autorização não é permitida.**
