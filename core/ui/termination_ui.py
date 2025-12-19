@@ -1,19 +1,21 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
+from design import Design
 from services.termination_service import register_termination
 
 
 def tab_termination(app, container):
-    frame = ttk.Frame(container, padding=40)
+    frame = ttk.Frame(container, padding=Design.Padding.Xl)
     frame.place(relx=0.5, rely=0.5, anchor="center")
 
+    # Título
     ttk.Label(
         frame,
         text="Checklist de Desligamento",
-        font=("Times New Roman", 16, "bold"),
-        foreground=app.colors["text_color"],
-    ).pack(pady=(0, 20))
+        font=Design.Typography.Font_title,
+        foreground=Design.Colors.Text,
+    ).pack(pady=(0, Design.Padding.Lg))
 
     # CHECKBOXES
     checkbox_vars = {
@@ -30,10 +32,10 @@ def tab_termination(app, container):
     checklist_frame.pack()
 
     col_left = ttk.Frame(checklist_frame)
-    col_left.grid(row=0, column=0, padx=25)
+    col_left.grid(row=0, column=0, padx=Design.Padding.Xl)
 
     col_right = ttk.Frame(checklist_frame)
-    col_right.grid(row=0, column=1, padx=25)
+    col_right.grid(row=0, column=1, padx=Design.Padding.Xl)
 
     def checkbox(parent, label, var):
         ttk.Checkbutton(
@@ -41,7 +43,7 @@ def tab_termination(app, container):
             text=label,
             variable=var,
             style="Checklist.TCheckbutton",
-        ).pack(anchor="w")
+        ).pack(anchor="w", pady=Design.Padding.Xs)
 
     checkbox(col_left, "AD", checkbox_vars["ad"])
     checkbox(col_left, "E-mail", checkbox_vars["email"])
@@ -54,12 +56,12 @@ def tab_termination(app, container):
 
     # TEXT FIELDS
     fields_frame = ttk.Frame(frame)
-    fields_frame.pack(pady=20)
+    fields_frame.pack(pady=Design.Padding.Lg)
 
     def text_field(label):
-        ttk.Label(fields_frame, text=label).pack(anchor="w")
+        ttk.Label(fields_frame, text=label).pack(anchor="w", pady=(Design.Padding.Sm, Design.Padding.Xs))
         entry = ttk.Entry(fields_frame, width=45)
-        entry.pack(pady=3)
+        entry.pack(ipady=Design.Padding.Sm)
         return entry
 
     employee_entry = text_field("Nome do colaborador:")
@@ -99,13 +101,13 @@ def tab_termination(app, container):
         text="Salvar na Planilha",
         command=on_save,
         style="Accent.TButton",
-    ).pack(pady=20)
+    ).pack(pady=Design.Padding.Xl)
 
-    ttk.Separator(frame).pack(fill="x", pady=15)
+    ttk.Separator(frame).pack(fill="x", pady=Design.Padding.Lg)
 
     ttk.Label(
         frame,
         text="RelSyS © 2025",
-        font=("Times New Roman", 9, "italic"),
-        foreground=app.colors["subtext_color"],
+        font=Design.Typography.Font_small_italic,
+        foreground=Design.Colors.Subtext,
     ).pack()

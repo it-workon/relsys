@@ -2,8 +2,8 @@ import ttkbootstrap as tb
 from tkinter import ttk
 from ttkbootstrap.constants import *
 
-from style import apply_styles
 from design import Design
+from design.apply import apply_design
 
 from ui.document_ui import tab_create_docs
 from ui.checklist_ui import tab_checklist
@@ -16,11 +16,11 @@ class App(tb.Window):
         super().__init__(themename="darkly")
 
         self.title("RelSyS - Emissor de Relatórios")
-        self.geometry("1168x864")
+        self.geometry("1168x940")
         self.configure(bg=Design.Colors.Bg_main)
         self.resizable(False, False)
 
-        self.colors = apply_styles(self)
+        apply_design()
 
         notebook = ttk.Notebook(self)
         notebook.pack(expand=True, fill="both", padx=25, pady=25)

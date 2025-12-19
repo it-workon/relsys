@@ -1,17 +1,19 @@
 from tkinter import ttk, messagebox
+
+from design import Design
 from services.plan_service import register_machine_plan
 
 
 def tab_plan(app, container):
-    frame = ttk.Frame(container, padding=40)
+    frame = ttk.Frame(container, padding=Design.Padding.Xl)
     frame.place(relx=0.5, rely=0.5, anchor="center")
 
     ttk.Label(
         frame,
         text="Plano de Máquina",
-        font=("Times New Roman", 16, "bold"),
-        foreground=app.colors["text_color"],
-    ).pack(pady=(0, 25))
+        font=Design.Typography.Font_title,
+        foreground=Design.Colors.Text,
+    ).pack(pady=(0, Design.Padding.Lg))
 
     fields = [
         ("Nome do Computador", "computer_name"),
@@ -24,12 +26,16 @@ def tab_plan(app, container):
         ("Office", "office_version"),
     ]
 
-    entries = {}
+    entries: dict[str, ttk.Entry] = {}
 
     for label_text, key in fields:
-        ttk.Label(frame, text=label_text).pack(anchor="w", pady=(10, 2))
+        ttk.Label(
+            frame,
+            text=label_text,
+        ).pack(anchor="w", pady=(Design.Padding.Sm, Design.Padding.Xs))
+
         entry = ttk.Entry(frame, width=40)
-        entry.pack(ipady=5)
+        entry.pack(ipady=Design.Padding.Sm)
         entries[key] = entry
 
     def on_save_plan():
@@ -49,4 +55,4 @@ def tab_plan(app, container):
         text="Registrar Plano",
         command=on_save_plan,
         style="Accent.TButton",
-    ).pack(pady=25)
+    ).pack(pady=Design.Padding.Xl)

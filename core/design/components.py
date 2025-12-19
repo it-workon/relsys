@@ -1,6 +1,7 @@
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 
+from . import Design
 
 class Components:
     @staticmethod
@@ -70,4 +71,49 @@ class Components:
             foreground=Design.Colors.Text,
             font=Design.Typography.Font_base,
             relief="flat",
+        )
+
+    @staticmethod
+    def title(parent, text):
+        return tb.Label(
+            parent,
+            text=text,
+            font=Design.Typography.Font_title,
+            foreground=Design.Colors.Text,
+        )
+
+    @staticmethod
+    def label(parent, text):
+        return tb.Label(parent, text=text, style="TLabel")
+
+    @staticmethod
+    def entry(parent, width=40):
+        return tb.Entry(parent, width=width)
+
+    @staticmethod
+    def labeled_entry(parent, label_text, width=40):
+        label = Components.label(parent, label_text)
+        label.pack(anchor="w", pady=(10, 2))
+
+        entry = Components.entry(parent, width)
+        entry.pack(ipady=5)
+
+        return entry
+
+    @staticmethod
+    def accent_button(parent, text, command):
+        return tb.Button(
+            parent,
+            text=text,
+            command=command,
+            style="Accent.TButton",
+        )
+
+    @staticmethod
+    def footer(parent, text, color):
+        return tb.Label(
+            parent,
+            text=text,
+            font=Design.Typography.Font_small_italic,
+            foreground=color,
         )

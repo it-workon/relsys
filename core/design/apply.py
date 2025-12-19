@@ -1,5 +1,5 @@
 import ttkbootstrap as tb
-from components import Components
+from .components import Components
 
 
 def apply_design():

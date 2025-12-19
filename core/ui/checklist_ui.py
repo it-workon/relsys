@@ -1,12 +1,14 @@
 import tkinter as tk
 from tkinter import ttk
 
+from design import Design
+
 
 def tab_checklist(app, container):
-    frame = ttk.Frame(container, padding=40)
+    frame = ttk.Frame(container, padding=Design.Padding.Xl)
     frame.place(relx=0.5, rely=0.5, anchor="center")
 
-    checklist_vars = []
+    checklist_vars: list[tk.BooleanVar] = []
 
     software_items = [
         "Criar o Suporte / Dar ADM ao suporte",
@@ -38,26 +40,27 @@ def tab_checklist(app, container):
         "Imprimir Bem Vindo",
     ]
 
+    # Título
     ttk.Label(
         frame,
         text="Checklist de Preparação",
-        font=("Times New Roman", 16, "bold"),
-        foreground=app.colors["text_color"],
-    ).pack(pady=(0, 25))
+        font=Design.Typography.Font_title,
+        foreground=Design.Colors.Text,
+    ).pack(pady=(0, Design.Padding.Lg))
 
     columns_container = ttk.Frame(frame)
-    columns_container.pack(pady=20)
+    columns_container.pack(pady=Design.Padding.Lg)
 
     def build_column(parent, title, items):
         column = ttk.Frame(parent)
-        column.pack(side="left", padx=30, anchor="n")
+        column.pack(side="left", padx=Design.Padding.Xl, anchor="n")
 
         ttk.Label(
             column,
             text=title,
-            font=("Times New Roman", 12, "bold"),
-            foreground=app.colors["subtext_color"],
-        ).pack(anchor="w", pady=(0, 10))
+            font=Design.Typography.Font_bold,
+            foreground=Design.Colors.Subtext,
+        ).pack(anchor="w", pady=(0, Design.Padding.Sm))
 
         for item in items:
             var = tk.BooleanVar()
@@ -66,7 +69,7 @@ def tab_checklist(app, container):
                 text=item,
                 variable=var,
                 style="Checklist.TCheckbutton",
-            ).pack(anchor="w")
+            ).pack(anchor="w", pady=Design.Padding.Xs)
             checklist_vars.append(var)
 
     build_column(columns_container, "Primeiros Passos", software_items)
@@ -81,13 +84,13 @@ def tab_checklist(app, container):
         text="Limpar Checklist",
         command=clear_checklist,
         style="Accent.TButton",
-    ).pack(pady=20)
+    ).pack(pady=Design.Padding.Xl)
 
-    ttk.Separator(frame, orient="horizontal").pack(fill="x", pady=15)
+    ttk.Separator(frame).pack(fill="x", pady=Design.Padding.Lg)
 
     ttk.Label(
         frame,
         text="RelSyS © 2025",
-        font=("Times New Roman", 9, "italic"),
-        foreground=app.colors["subtext_color"],
+        font=Design.Typography.Font_small_italic,
+        foreground=Design.Colors.Subtext,
     ).pack()
