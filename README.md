@@ -27,15 +27,15 @@ A organização do projeto segue uma separação clara de responsabilidades:
 ```
 relsys/
 ├── core/
-│   ├── common/ # Utilitários e helpers compartilhados
-│   ├── design/ # Design System (cores, tipografia, padding, componentes)
-│   ├── infra/ # Camada de infraestrutura (acesso a arquivos/planilhas)
-│   ├── services/ # Regras de negócio
-│   ├── ui/ # Interfaces gráficas (Tkinter / ttkbootstrap)
-│   └── main.py # Ponto de entrada da aplicação
-├── output/ # Arquivos gerados pelo sistema
-├── templates/ # Templates de documentos
-├── requirements.txt # Dependências do projeto
+│   ├── common/       # Utilitários e helpers compartilhados
+│   ├── design/       # Design System (cores, tipografia, padding, componentes)
+│   ├── infra/        # Camada de infraestrutura (acesso a arquivos/planilhas)
+│   ├── services/     # Regras de negócio
+│   ├── ui/           # Interfaces gráficas (Tkinter / ttkbootstrap)
+│   └── main.py       # Ponto de entrada da aplicação
+├── output/           # Arquivos gerados pelo sistema
+├── templates/        # Templates de documentos
+├── requirements.txt  # Dependências do projeto
 ├── LICENSE
 └── README.md
 ```
