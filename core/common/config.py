@@ -1,7 +1,7 @@
 from pathlib import Path
 
 CORE_DIR = Path(__file__).resolve().parent
-BASE_DIR = CORE_DIR.parent
+BASE_DIR = CORE_DIR.parent.parent
 
 TEMPLATES_DIR = BASE_DIR / "templates" / "welcome-model.docx"
 OUTPUT_DIR = BASE_DIR / "output"
