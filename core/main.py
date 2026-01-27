@@ -16,7 +16,7 @@ class App(tb.Window):
         super().__init__(themename="darkly")
 
         self.title("RelSyS - Emissor de Relatórios")
-        self.geometry("1168x940")
+        self.geometry("800x800")
         self.configure(bg=Design.Colors.Bg_main)
         self.resizable(False, False)
 
