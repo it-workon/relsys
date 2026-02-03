@@ -60,7 +60,7 @@ def tab_create_docs(app, container):
 
     ttk.Label(
         frame,
-        text="RelSyS © 2025",
+        text="RelSyS © 2026",
         font=Design.Typography.Font_small_italic,
         foreground=Design.Colors.Subtext,
     ).pack()
