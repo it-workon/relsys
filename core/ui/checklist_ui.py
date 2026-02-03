@@ -5,7 +5,7 @@ from design import Design
 
 
 def tab_checklist(app, container):
-    frame = ttk.Frame(container, padding=Design.Padding.Xl)
+    frame = ttk.Frame(container, padding=Design.Padding.Xs)
     frame.place(relx=0.5, rely=0.5, anchor="center")
 
     checklist_vars: list[tk.BooleanVar] = []
@@ -46,14 +46,14 @@ def tab_checklist(app, container):
         text="Checklist de Preparação",
         font=Design.Typography.Font_title,
         foreground=Design.Colors.Text,
-    ).pack(pady=(0, Design.Padding.Lg))
+    ).pack(pady=(0, Design.Padding.Md))
 
     columns_container = ttk.Frame(frame)
-    columns_container.pack(pady=Design.Padding.Lg)
+    columns_container.pack(pady=Design.Padding.Sm)
 
     def build_column(parent, title, items):
         column = ttk.Frame(parent)
-        column.pack(side="left", padx=Design.Padding.Xl, anchor="n")
+        column.pack(side="left", padx=Design.Padding.Xs, anchor="n")
 
         ttk.Label(
             column,
@@ -84,13 +84,13 @@ def tab_checklist(app, container):
         text="Limpar Checklist",
         command=clear_checklist,
         style="Accent.TButton",
-    ).pack(pady=Design.Padding.Xl)
+    ).pack(pady=Design.Padding.Xs)
 
-    ttk.Separator(frame).pack(fill="x", pady=Design.Padding.Lg)
+    ttk.Separator(frame).pack(fill="x", pady=Design.Padding.Md)
 
     ttk.Label(
         frame,
-        text="RelSyS © 2025",
+        text="RelSyS © 2026",
         font=Design.Typography.Font_small_italic,
         foreground=Design.Colors.Subtext,
     ).pack()
