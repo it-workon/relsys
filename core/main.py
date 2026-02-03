@@ -16,14 +16,14 @@ class App(tb.Window):
         super().__init__(themename="darkly")
 
         self.title("RelSyS - Emissor de Relatórios")
-        self.geometry("800x800")
+        self.geometry("600x600")
         self.configure(bg=Design.Colors.Bg_main)
-        self.resizable(False, False)
+        self.resizable(True, True)
 
         apply_design()
 
         notebook = ttk.Notebook(self)
-        notebook.pack(expand=True, fill="both", padx=25, pady=25)
+        notebook.pack(expand=True, fill="both", padx=15, pady=15)
 
         # Document tab
         tab_documents_frame = ttk.Frame(notebook)
