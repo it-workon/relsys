@@ -17,6 +17,6 @@ def generate_password(user_name) -> str:
     first += parts[0][1]
     second = parts[1][0].capitalize()
 
-    passwd = f"{first}{second}@work2025"
+    passwd = f"{first}{second}@work2026"
 
     return passwd
