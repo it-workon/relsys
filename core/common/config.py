@@ -14,7 +14,7 @@ data = {
     "{{GI_PASSWD}}": "1234",
     "{{TEAMS_PASSWD}}": "{PASSWD}",
     "{{VBD_PASSWD}}": "{PASSWD}",
-    "{{FORTICLIENT_PASSWD}}": "workon2025",
+    "{{FORTICLIENT_PASSWD}}": "workon2026",
     "{{PROCESS_NUMBER}}": "{PROCESS}",
     "{{ASSET}}": "XXX-000000",
 }
