@@ -5,7 +5,7 @@ from services.plan_service import register_machine_plan
 
 
 def tab_plan(app, container):
-    frame = ttk.Frame(container, padding=Design.Padding.Xl)
+    frame = ttk.Frame(container, padding=Design.Padding.Xs)
     frame.place(relx=0.5, rely=0.5, anchor="center")
 
     ttk.Label(
@@ -13,7 +13,7 @@ def tab_plan(app, container):
         text="Plano de Máquina",
         font=Design.Typography.Font_title,
         foreground=Design.Colors.Text,
-    ).pack(pady=(0, Design.Padding.Lg))
+    ).pack(pady=(0, Design.Padding.Xs))
 
     fields = [
         ("Nome do Computador", "computer_name"),
@@ -32,10 +32,10 @@ def tab_plan(app, container):
         ttk.Label(
             frame,
             text=label_text,
-        ).pack(anchor="w", pady=(Design.Padding.Sm, Design.Padding.Xs))
+        ).pack(anchor="w", pady=(2, 2))
 
         entry = ttk.Entry(frame, width=40)
-        entry.pack(ipady=Design.Padding.Sm)
+        entry.pack(ipady=2)
         entries[key] = entry
 
     def on_save_plan():
@@ -55,4 +55,11 @@ def tab_plan(app, container):
         text="Registrar Plano",
         command=on_save_plan,
         style="Accent.TButton",
-    ).pack(pady=Design.Padding.Xl)
+    ).pack(pady=Design.Padding.Xs)
+    
+    ttk.Label(
+        frame,
+        text="RelSyS © 2026",
+        font=Design.Typography.Font_small_italic,
+        foreground=Design.Colors.Subtext,
+    ).pack()
