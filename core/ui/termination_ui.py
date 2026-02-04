@@ -6,7 +6,7 @@ from services.termination_service import register_termination
 
 
 def tab_termination(app, container):
-    frame = ttk.Frame(container, padding=Design.Padding.Xl)
+    frame = ttk.Frame(container, padding=Design.Padding.Xs)
     frame.place(relx=0.5, rely=0.5, anchor="center")
 
     # Título
@@ -15,7 +15,7 @@ def tab_termination(app, container):
         text="Checklist de Desligamento",
         font=Design.Typography.Font_title,
         foreground=Design.Colors.Text,
-    ).pack(pady=(0, Design.Padding.Lg))
+    ).pack(pady=(0, Design.Padding.Xs))
 
     # CHECKBOXES
     checkbox_vars = {
@@ -32,10 +32,10 @@ def tab_termination(app, container):
     checklist_frame.pack()
 
     col_left = ttk.Frame(checklist_frame)
-    col_left.grid(row=0, column=0, padx=Design.Padding.Xl)
+    col_left.grid(row=0, column=0, padx=Design.Padding.Xs)
 
     col_right = ttk.Frame(checklist_frame)
-    col_right.grid(row=0, column=1, padx=Design.Padding.Xl)
+    col_right.grid(row=0, column=1, padx=Design.Padding.Xs)
 
     def checkbox(parent, label, var):
         ttk.Checkbutton(
@@ -56,7 +56,7 @@ def tab_termination(app, container):
 
     # TEXT FIELDS
     fields_frame = ttk.Frame(frame)
-    fields_frame.pack(pady=Design.Padding.Lg)
+    fields_frame.pack(pady=Design.Padding.Xs)
 
     def text_field(label):
         ttk.Label(fields_frame, text=label).pack(anchor="w", pady=(Design.Padding.Sm, Design.Padding.Xs))
@@ -101,9 +101,9 @@ def tab_termination(app, container):
         text="Salvar na Planilha",
         command=on_save,
         style="Accent.TButton",
-    ).pack(pady=Design.Padding.Xl)
+    ).pack(pady=Design.Padding.Xs)
 
-    ttk.Separator(frame).pack(fill="x", pady=Design.Padding.Lg)
+    ttk.Separator(frame).pack(fill="x", pady=Design.Padding.Xs)
 
     ttk.Label(
         frame,
