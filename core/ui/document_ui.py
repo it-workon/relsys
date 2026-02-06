@@ -12,7 +12,7 @@ def tab_create_docs(app, container):
     ttk.Label(
         frame,
         text="Gerador de Relatórios",
-        font=Design.Typography.Font_bold,  # ↓ antes: Font_title
+        font=Design.Typography.Font_title,  # ↓ antes: Font_title
         foreground=Design.Colors.Text,
     ).pack(pady=(0, Design.Padding.Md))
 
