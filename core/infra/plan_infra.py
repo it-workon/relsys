@@ -2,7 +2,7 @@ from openpyxl import load_workbook, Workbook
 from openpyxl.styles import Alignment, Border, Side
 
 
-SPREADSHEET_PATH = r"Z:\NEW TECNOLOGIA\1 Documentação\2 Inventário\1 Máquinas\_Relacao_Notebooks_Desktops_atual.xlsx"
+SPREADSHEET_PATH = r"Z:\1 Documentação\2 Inventário\1 Máquinas\_Relacao_Notebooks_Desktops_atual.xlsx"
 WORKSHEET_NAME = "Notebooks"
 
 
