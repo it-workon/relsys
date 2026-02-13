@@ -38,6 +38,7 @@ def tab_checklist(app, container):
         "Impressora",
         "Conferir Dowloads",
         "Imprimir Bem Vindo",
+        "Planilhar Máquina",
     ]
 
     # Título
