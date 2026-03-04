@@ -7,7 +7,7 @@ from design import Design
 def tab_checklist(app, container):
     # Frame principal travado no centro da tela
     main_frame = ttk.Frame(container, padding=Design.Padding.Md)
-    main_frame.place(relx=0.5, rely=0.5, anchor="center", width=450, height=650)
+    main_frame.place(relx=0.5, rely=0.5, anchor="center", width=600, height=600)
 
     ttk.Label(
         main_frame,
@@ -64,11 +64,9 @@ def tab_checklist(app, container):
     }
 
     def update_list(category):
-        # Limpa o container antes de reconstruir
         for widget in list_container.winfo_children():
             widget.destroy()
 
-        # Rótulo da Etapa (Centralizado com espaçamento superior)
         ttk.Label(
             list_container,
             text=f"Etapa: {category}",
@@ -76,12 +74,9 @@ def tab_checklist(app, container):
             foreground=Design.Colors.Subtext,
         ).pack(anchor="n", pady=(10, 20))
 
-        # FRAME INTERNO: Este é o segredo para centralizar a "massa" de texto
-        # Ele fica no centro (anchor="n"), mas os itens dentro dele ficam à esquerda
         items_inner_frame = ttk.Frame(list_container)
         items_inner_frame.pack(anchor="n")
 
-        # Itens do Checklist dentro do frame interno
         for item in checklists[category]:
             var = tk.BooleanVar()
             ttk.Checkbutton(
@@ -91,7 +86,6 @@ def tab_checklist(app, container):
                 style="Checklist.TCheckbutton",
             ).pack(anchor="w", pady=Design.Padding.Xs)
 
-    # Criar botões de navegação dinamicamente
     for cat in checklists.keys():
         ttk.Button(
             nav_frame,
@@ -100,7 +94,6 @@ def tab_checklist(app, container):
             style="Accent.TButton",
         ).pack(side="left", padx=Design.Padding.Xs)
 
-    # 4. RODAPÉ (Fixo na parte inferior)
     footer_frame = ttk.Frame(main_frame)
     footer_frame.pack(side="bottom", fill="x", pady=(Design.Padding.Md, 0))
     
@@ -112,5 +105,4 @@ def tab_checklist(app, container):
         foreground=Design.Colors.Subtext,
     ).pack()
 
-    # Iniciar com a primeira etapa (usando o nome exato da chave)
     update_list("Verificação")
