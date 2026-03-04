@@ -5,93 +5,104 @@ from design import Design
 
 
 def tab_checklist(app, container):
-    frame = ttk.Frame(container, padding=Design.Padding.Xs)
-    frame.place(relx=0.5, rely=0.5, anchor="center")
+    # Frame principal travado no centro da tela
+    main_frame = ttk.Frame(container, padding=Design.Padding.Md)
+    main_frame.place(relx=0.5, rely=0.5, anchor="center", width=600, height=600)
 
-    checklist_vars: list[tk.BooleanVar] = []
-
-    software_items = [
-        "Criar o Suporte / Dar ADM ao suporte",
-        "Logar no suporte",
-        "Colocar WIFI",
-        "Colocar no domínio e o nome",
-        "Entrar na minha conta",
-        "Baixar Chrome",
-        "Baixar AnyDesk",
-        "Baixar FortClient",
-        "Baixar WINRAR",
-        "Baixar Office",
-        "Baixar Gi",
-        "Baixar Java",
-        "Baixar Adobe",
-        "Baixar o BitDefender",
-        "Baixar o PaperCut",
-    ]
-
-    config_items = [
-        "Ativar Suporte",
-        "Email / Assinatura",
-        "Teams",
-        "GI",
-        "Fortclient",
-        "PaperCut",
-        "Impressora",
-        "Conferir Dowloads",
-        "Imprimir Bem Vindo",
-        "Planilhar Máquina",
-    ]
-
-    # Título
     ttk.Label(
-        frame,
-        text="Checklist de Preparação",
+        main_frame,
+        text="Checklist de Máquina",
         font=Design.Typography.Font_title,
         foreground=Design.Colors.Text,
-    ).pack(pady=(0, Design.Padding.Md))
+    ).pack(pady=(0, Design.Padding.Lg))
 
-    columns_container = ttk.Frame(frame)
-    columns_container.pack(pady=Design.Padding.Sm)
+    # BOTÕES DE NAVEGAÇÃO
+    nav_frame = ttk.Frame(main_frame)
+    nav_frame.pack(pady=(0, Design.Padding.Lg))
 
-    def build_column(parent, title, items):
-        column = ttk.Frame(parent)
-        column.pack(side="left", padx=Design.Padding.Xs, anchor="n")
+    # CONTAINER DO CHECKLIST
+    list_container = ttk.Frame(main_frame)
+    list_container.pack(fill="both", expand=True)
+
+    checklists = {
+        "Verificação": [
+            "Verificar Avarias externas",
+            "Testar Teclado",
+            "Testar Câmera",
+            "Testar Brilho da Tela",
+            "Testar Microfone",
+            "Testar se conecta a internet",
+            "Testar se Carrega / Mantém carga"
+        ],
+        "Configuração Básica": [
+            "Criar o Suporte / Dar ADM ao suporte",
+            "Logar no suporte",
+            "Colocar WIFI",
+            "Colocar no domínio e o nome",
+            "Entrar na minha conta",
+            "Baixar Chrome",
+            "Baixar AnyDesk",
+            "Baixar FortClient",
+            "Baixar WINRAR",
+            "Baixar Office",
+            "Baixar Gi",
+            "Baixar Java",
+            "Baixar Adobe",
+            "Baixar o BitDefender"
+        ],
+        "Usuário": [
+            "Ativar Suporte",
+            "Email / Assinatura",
+            "Teams",
+            "GI",
+            "Fortclient",
+            "Baixar PaperCut",
+            "Configurar Impressora",
+            "Planilhar Máquina",
+            "Imprimir Bem Vindo"
+        ]
+    }
+
+    def update_list(category):
+        for widget in list_container.winfo_children():
+            widget.destroy()
 
         ttk.Label(
-            column,
-            text=title,
+            list_container,
+            text=f"Etapa: {category}",
             font=Design.Typography.Font_bold,
             foreground=Design.Colors.Subtext,
-        ).pack(anchor="w", pady=(0, Design.Padding.Sm))
+        ).pack(anchor="n", pady=(10, 20))
 
-        for item in items:
+        items_inner_frame = ttk.Frame(list_container)
+        items_inner_frame.pack(anchor="n")
+
+        for item in checklists[category]:
             var = tk.BooleanVar()
             ttk.Checkbutton(
-                column,
+                items_inner_frame,
                 text=item,
                 variable=var,
                 style="Checklist.TCheckbutton",
             ).pack(anchor="w", pady=Design.Padding.Xs)
-            checklist_vars.append(var)
 
-    build_column(columns_container, "Primeiros Passos", software_items)
-    build_column(columns_container, "Configurar", config_items)
+    for cat in checklists.keys():
+        ttk.Button(
+            nav_frame,
+            text=cat,
+            command=lambda c=cat: update_list(c),
+            style="Accent.TButton",
+        ).pack(side="left", padx=Design.Padding.Xs)
 
-    def clear_checklist():
-        for var in checklist_vars:
-            var.set(False)
-
-    ttk.Button(
-        frame,
-        text="Limpar Checklist",
-        command=clear_checklist,
-        style="Accent.TButton",
-    ).pack(pady=Design.Padding.Xs)
-
-    ttk.Separator(frame).pack(fill="x", pady=Design.Padding.Md)
-
+    footer_frame = ttk.Frame(main_frame)
+    footer_frame.pack(side="bottom", fill="x", pady=(Design.Padding.Md, 0))
+    
+    ttk.Separator(footer_frame).pack(fill="x", pady=Design.Padding.Sm)
     ttk.Label(
-        frame,
+        footer_frame,
         text="RelSyS © 2026",
         font=Design.Typography.Font_small_italic,
         foreground=Design.Colors.Subtext,
     ).pack()
+
+    update_list("Verificação")
