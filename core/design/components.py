@@ -72,6 +72,13 @@ class Components:
             font=Design.Typography.Font_base,
             relief="flat",
         )
+        
+        style.map(
+        "Checklist.TCheckbutton",
+            foreground=[('disabled', Design.Colors.Subtext), ('pressed', Design.Colors.Accent)],
+            background=[('active', Design.Colors.Bg_card)],
+            indicatorcolor=[('selected', Design.Colors.Accent), ('!selected', Design.Colors.Bg_card)],
+        )
 
     @staticmethod
     def title(parent, text):
@@ -117,3 +124,5 @@ class Components:
             font=Design.Typography.Font_small_italic,
             foreground=color,
         )
+
+    

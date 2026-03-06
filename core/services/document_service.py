@@ -7,7 +7,7 @@ from common.utils import format_filename
 from infra.document_infra import fill_template
 
 
-def generate_document(user_name: str, process_num: str, systems: list) -> str:
+def generate_document(user_name: str, systems: list) -> str:
     if not user_name:
         raise ValueError("Nome inválido")
 
@@ -16,12 +16,10 @@ def generate_document(user_name: str, process_num: str, systems: list) -> str:
     replacements = {
         "{NAME}": user_name,
         "{PASS}": password,
-        "{PROCESS_NUMBER}": process_num,
         "{DOMAIN_ORG}": "workongroup.com.br",
-        "{ASSET}": "XXX-123456"
     }
 
-    todos_sistemas = ["Windows", "Email", "Ginfor", "Teams", "VBD", "FortClient"]
+    todos_sistemas = ["Windows", "Email", "Ginfor", "Teams", "VBD", "Fortclient"]
 
     for sistema in todos_sistemas:
         key_login = f"{{LOGIN_{sistema.upper()}}}"

@@ -78,14 +78,20 @@ def tab_checklist(app, container):
         items_inner_frame.pack(anchor="n")
 
         for item in checklists[category]:
-            var = tk.BooleanVar()
-            ttk.Checkbutton(
+            var = tk.IntVar(value=0)
+            
+            cb = ttk.Checkbutton(
                 items_inner_frame,
                 text=item,
                 variable=var,
                 style="Checklist.TCheckbutton",
-            ).pack(anchor="w", pady=Design.Padding.Xs)
+            )
+            
+            cb.state(['!alternate']) 
+            cb.pack(anchor="w", pady=Design.Padding.Xs)
 
+            cb.variable = var
+            
     for cat in checklists.keys():
         ttk.Button(
             nav_frame,

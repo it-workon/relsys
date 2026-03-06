@@ -45,15 +45,6 @@ def tab_create_docs(app, container):
     name_entry = ttk.Entry(frame, width=32)
     name_entry.pack(ipady=Design.Padding.Xs)
 
-    # Process
-    ttk.Label(
-        frame,
-        text="Número do processo (formato: XXXXXX)",
-    ).pack(pady=(Design.Padding.Md, Design.Padding.Xs))
-
-    process_entry = ttk.Entry(frame, width=32)
-    process_entry.pack(ipady=Design.Padding.Xs)
-
     def on_generate_document():
         try:
             # Coleta apenas os nomes dos sistemas que estão marcados como True
@@ -65,7 +56,6 @@ def tab_create_docs(app, container):
 
             path = generate_document(
                 user_name=name_entry.get().strip(),
-                process_num=process_entry.get().strip(),
                 systems=selected_systems  # <-- Novo argumento enviado
             )
 
